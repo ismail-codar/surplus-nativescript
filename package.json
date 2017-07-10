@@ -1,0 +1,26 @@
+{
+  "name": "surplus-nativescript",
+  "version": "1.0.0",
+  "description": "nativescript surplus entegration",
+  "main": "dom.js",
+  "dependencies": {
+    "surplus": "^0.4.3",
+    "surplus-preprocessor": "^0.4.3",
+    "tns-core-modules": "^3.1.0",
+    "watch": "^1.0.2"
+  },
+  "devDependencies": {
+    "typescript": "2.3.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "surplus",
+    "nativescript",
+    "frp",
+    "reactive"
+  ],
+  "author": "ismail codar",
+  "license": "ISC"
+}

@@ -1,1 +1,2 @@
 # surplus-nativescript
+[Nativescript](https://www.nativescript.org/) and [s.js](https://github.com/adamhaile/S) entegration. An example project is [here](https://github.com/ismail-codar/surplus-nativescript-template)

@@ -51,7 +51,7 @@ Object.defineProperty(View.prototype, "previousSibling", {
 
 Object.defineProperty(View.prototype, "lastChild", {
     get: function lastChild() {
-        return this.parentNode._subViews[this.parentNode._subViews.length - 1];
+        return this._subViews[this._subViews.length - 1];
     }
 })
 

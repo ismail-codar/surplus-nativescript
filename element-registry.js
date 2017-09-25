@@ -81,6 +81,9 @@ registerElement("webView", () => require("tns-core-modules/ui/web-view").WebView
 registerElement("wrapLayout", () => require("tns-core-modules/ui/layouts/wrap-layout").WrapLayout);
 registerElement("formattedString", () => require("tns-core-modules/text/formatted-string").FormattedString);
 registerElement("span", () => require("tns-core-modules/text/span").Span);
+registerElement("actionBar", () => require("tns-core-modules/ui/action-bar").ActionBar);
+registerElement("actionItem", () => require("tns-core-modules/ui/action-bar").ActionItem);
+registerElement("navigationButton", () => require("tns-core-modules/ui/action-bar").NavigationButton);
 
 registerElement("detachedContainer", () => require("tns-core-modules/ui/proxy-view-container").ProxyViewContainer,
     { skipAddToDom: true });

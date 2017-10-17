@@ -63,6 +63,12 @@ Object.defineProperty(View.prototype, 'lastChild', {
   }
 });
 
+Object.defineProperty(View.prototype, 'childNodes', {
+  get: function childNodes() {
+    return this._subViews;
+  }
+});
+
 //TODO textContent
 Object.defineProperty(View.prototype, 'textContent', {
   get: function textContent() {

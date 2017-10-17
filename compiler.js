@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const watch = require('watch');
 const glob = require('glob');
-const sp = require('surplus-preprocessor');
+const surplusCompiler = require('surplus/compiler');
 const ts = require('typescript');
 
 const nativeComponents = [
@@ -67,6 +67,7 @@ const compileFile = (f, callback) => {
   fs.readFile(f, (err, data) => {
     if (err) return callback && callback();
     let code = data.toString();
+    const newFilePath = f.substr(0, f.lastIndexOf('.')) + '.js';
     try {
       if (ext == '.tsx') {
         nativeComponents.forEach(componentName => {
@@ -76,17 +77,21 @@ const compileFile = (f, callback) => {
             .replace(new RegExp('<' + componentName, 'g'), '<' + newName)
             .replace(new RegExp(componentName + '>', 'g'), newName + '>');
         });
-        code = sp.preprocess(code);
+        code = ts.transpileModule(code, tsOptions.compilerOptions).outputText;
+        code = surplusCompiler.compile(code, { sourcemap: 'append' });
         if (code.indexOf(' Surplus = ') == -1)
           code += '\nvar Surplus = require("surplus");';
-      }
-      code = ts.transpileModule(code, { tsOptions }).outputText;
+      } else
+        code = ts.transpileModule(code, tsOptions.compilerOptions).outputText;
 
-      const newFilePath = f.substr(0, f.lastIndexOf('.')) + '.js';
       fs.writeFile(newFilePath, code, callback && callback);
       console.log('COMPILED ' + newFilePath);
     } catch (e) {
-      console.log(code);
+      console.error(
+        '--------------------------------> ERROR : ',
+        newFilePath,
+        '<------------------------------------'
+      );
       console.log(e);
       callback && callback();
     }
